@@ -1,12 +1,40 @@
-<div class="row p-4">
-  <div class="col-md-5">
-    <textarea class="form-control"></textarea>
+<form [formGroup]="form" (ngSubmit)="gerar(form.value)">
+  <div class="row p-4">
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="json">Json</label>
+        <textarea class="form-control text" id="json" formControlName="json" placeholder="Entre com o JSON aqui!"></textarea>
+      </div>
+
+      <!-- Mensagens de erro -->
+      <ng-container *ngIf="form.get('json').invalid && form.get('json').touched && form.get('json').dirty">
+        <ul>
+          <li class="text-danger" *ngIf="form.get('json').hasError('required')">
+            Campo obrigatório!
+          </li>
+          <li class="text-danger" *ngIf="form.get('json').hasError('json')">
+            Json inválido
+          </li>
+        </ul>
+        <p class="text-danger" *ngIf="form.get('json').hasError('error')">
+          Não foi possível concluir a conversão
+        </p>
+      </ng-container>
+    </div>
+    <div class="col-md-2 text-center">
+      <div class="form-check mt-2">
+        <input type="checkbox" class="form-check-input" id="showHeaders" formControlName="showHeaders">
+        <label class="form-check-label" for="showHeaders">Gerar cabeçalho</label>
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Converter >></button>
+      <button type="reset" class="btn btn-danger mt-2">Limpar</button>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <label for="csv">Resultado:</label>
+        <textarea class="form-control text" formControlName="csv"></textarea>
+      </div>
+
+    </div>
   </div>
-  <div class="col-md-2">
-    <button type="submit" class="btn btn-primary">Converter >></button>
-    <button type="reset" class="btn btn-danger">Limpar</button>
-  </div>
-  <div class="col-md-5">
-    <textarea class="form-control" readonly></textarea>
-  </div>
-</div>
+</form>
