@@ -2,16 +2,16 @@ import { iCSVToken } from "./token";
 
 export class CSV {
   //Matrix de valores
-  private _matrix: iCSVToken[][] = [];
+  matrix: iCSVToken[][] = [];
 
   //Adiciona objeto no controlador matriz
   addObject(obj: any) {
-    this._matrix.push(this.fromObject(obj));
+    this.matrix.push(this.fromObject(obj));
   }
 
   //adiciona array no controlador matriz
   addArray(obj: any[]) {
-    this._matrix.push(...obj.map(x => this.fromObject(x)))
+    this.matrix.push(...obj.map(x => this.fromObject(x)))
   }
 
   //Processo de converter objeto em array de valores
@@ -34,10 +34,10 @@ export class CSV {
   toString(showHeaders?: Boolean) {
     //Se for pra mostrar o cabeçalho acrescentar mais um registro no indice 0
     if (showHeaders) {
-      this._matrix = [this._matrix[0].map(x => new CSVToken(x.chave, x.chave)), ...this._matrix]
+      this.matrix = [this.matrix[0].map(x => new CSVToken(x.chave, x.chave)), ...this.matrix]
     }
 
-    return this._matrix
+    return this.matrix
       //Map por linha, separando valores por ;
       .map(x => x.map(y => y.valor).join(";"))
       //Separar as linhas por quebras

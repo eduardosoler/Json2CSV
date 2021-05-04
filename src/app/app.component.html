@@ -5,7 +5,8 @@
     <div class="col-md-5">
       <div class="form-group">
         <label for="json">Json</label>
-        <textarea class="form-control text" id="json" formControlName="json" placeholder="Entre com o JSON aqui!"></textarea>
+        <textarea class="form-control text" id="json" formControlName="json"
+          placeholder="Entre com o JSON aqui!"></textarea>
       </div>
 
       <!-- Mensagens de erro -->
@@ -45,4 +46,46 @@
     </div>
     <!-- Saida do CSV -->
   </div>
+
+  <!-- Bonus da tabela -->
+  <div class="row m-2" *ngIf="tabela">
+
+    <div class="col-12">
+      <div class="alert alert-info" role="alert">
+        <b>Bônus</b> exibir resultado em uma tabela
+      </div>
+    </div>
+
+    <!-- Tabela -->
+    <div class="col-12 table-responsive">
+      <table class="table table-bordered">
+        <tbody>
+          <!-- Linhas -->
+          <tr *ngFor="let l of tabela; let i = index">
+
+
+            <!-- Colunas para cabeçalho -->
+            <ng-container *ngIf="i == 0 && tabelaHeader; else linha">
+              <th *ngFor="let c of l">
+                {{ c.valor }}
+              </th>
+            </ng-container>
+            <!-- Colunas para cabeçalho -->
+
+            <!-- Colunas para linhas -->
+            <ng-template #linha>
+              <td *ngFor="let c of l">
+                {{ c.valor }}
+              </td>
+            </ng-template>
+            <!-- Colunas para linhas -->
+
+          </tr>
+          <!-- Linhas -->
+        </tbody>
+      </table>
+    </div>
+    <!-- Tabela -->
+  </div>
+  <!-- Bonus da tabela -->
 </form>

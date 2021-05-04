@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CSV } from 'src/models/csv';
+import { iCSVToken } from 'src/models/token';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ export class AppComponent {
   title = 'json2csv';
 
   form: FormGroup;
+  tabela: iCSVToken[][];
+  tabelaHeader: boolean;
 
   constructor(fb: FormBuilder) {
     this.form = fb.group({
@@ -50,6 +53,8 @@ export class AppComponent {
           csv.addObject(json);
 
         this.form.get('csv').setValue(csv.toString(value.showHeaders));
+        this.tabela = csv.matrix;
+        this.tabelaHeader = value.showHeaders;
       } catch (err) {
         console.error(err);
         this.form.get('json').setErrors({'error': true});
