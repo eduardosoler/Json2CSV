@@ -1,6 +1,7 @@
 import { iCSVToken } from "./token";
 
 export class CSV {
+  //Matrix de valores
   private _matrix: iCSVToken[][] = [];
 
   //Adiciona objeto no controlador matriz
@@ -8,11 +9,12 @@ export class CSV {
     this._matrix.push(this.fromObject(obj));
   }
 
-  //adiciona array
+  //adiciona array no controlador matriz
   addArray(obj: any[]) {
     this._matrix.push(...obj.map(x => this.fromObject(x)))
   }
 
+  //Processo de converter objeto em array de valores
   private fromObject(obj: any, prefix?: string): iCSVToken[] {
     let temp: iCSVToken[] = [];
     for (let prop in obj)
@@ -43,6 +45,7 @@ export class CSV {
   }
 }
 
+//Objeto que irá representar os valores de cada posição do CSV
 class CSVToken implements iCSVToken {
   chave: string;
   valor: string;

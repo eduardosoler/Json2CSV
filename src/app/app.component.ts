@@ -22,7 +22,11 @@ export class AppComponent {
 
   //Submit do form e gerador de CSV
   gerar(value: { json: string, showHeaders: boolean }) {
+    //Se o formulário estiver válido
     if (this.form.valid) {
+
+      //#region JSON para objeto
+
       let json: any;
       try{
         json = JSON.parse(value.json);
@@ -32,8 +36,13 @@ export class AppComponent {
         return;
       }
 
+      //#endregion
+
+      //#region Objeto para CSV
 
       try {
+        /* Estas classes que escrevi servem para converter uma matriz de valores
+           em CSV os detalhes de como fiz estão comentados nela */
         let csv = new CSV();
         if (Array.isArray(json))
           csv.addArray(json);
@@ -45,6 +54,8 @@ export class AppComponent {
         console.error(err);
         this.form.get('json').setErrors({'error': true});
       }
+
+      //#endregion
     }else{
       this.form.get('json').markAsTouched();
       this.form.get('json').markAsDirty();

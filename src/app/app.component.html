@@ -1,5 +1,7 @@
 <form [formGroup]="form" (ngSubmit)="gerar(form.value)">
   <div class="row m-4">
+
+    <!-- Input do Json -->
     <div class="col-md-5">
       <div class="form-group">
         <label for="json">Json</label>
@@ -21,6 +23,9 @@
         </p>
       </ng-container>
     </div>
+    <!-- Input do Json -->
+
+    <!-- Painel de ações -->
     <div class="col-md-2 text-center">
       <div class="form-check mt-4">
         <input type="checkbox" class="form-check-input" id="showHeaders" formControlName="showHeaders">
@@ -29,12 +34,15 @@
       <button type="submit" class="btn btn-primary mt-2">Converter >></button>
       <button type="reset" class="btn btn-danger mt-2 ml-1">Limpar</button>
     </div>
+    <!-- Painel de ações -->
+
+    <!-- Saida do CSV -->
     <div class="col-md-5">
       <div class="form-group">
         <label for="csv">Resultado:</label>
         <textarea class="form-control text" formControlName="csv"></textarea>
       </div>
-
     </div>
+    <!-- Saida do CSV -->
   </div>
 </form>
