@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="gerar(form.value)">
-  <div class="row p-4">
+  <div class="row m-4">
     <div class="col-md-5">
       <div class="form-group">
         <label for="json">Json</label>
@@ -22,7 +22,7 @@
       </ng-container>
     </div>
     <div class="col-md-2 text-center">
-      <div class="form-check mt-2">
+      <div class="form-check mt-4">
         <input type="checkbox" class="form-check-input" id="showHeaders" formControlName="showHeaders">
         <label class="form-check-label" for="showHeaders">Gerar cabeçalho</label>
       </div>

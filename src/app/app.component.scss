@@ -1,3 +1,13 @@
 .text{
   min-height: 50vh;
 }
+
+.form-control.ng-dirty.ng-touched.ng-invalid{
+  border-color: #dc3545;
+}
+
+.form-control.ng-dirty.ng-touched.ng-invalid:hover,
+.form-control.ng-dirty.ng-touched.ng-invalid:focus{
+  border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgb(220 53 69 / 25%);
+}
