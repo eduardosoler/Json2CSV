@@ -20,7 +20,7 @@ export class CSV {
     for (let prop in obj)
       //Caso propriedade seja um objeto agir recursivamente para adicionar as propriedades no objeto pai
       if (obj[prop] instanceof Object) {
-        temp.push(...this.fromObject(obj[prop]))
+        temp.push(...this.fromObject(obj[prop], prop))
       } else
       //Caso seja um tipo primitivo add prefix caso tenha e valor
         temp.push(new CSVToken(`${prefix ? prefix + '.' : ''}${prop}`, "" + obj[prop]));
